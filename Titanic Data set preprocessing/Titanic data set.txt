@@ -1,0 +1,124 @@
+Machine Learning Data Preprocessing (Titanic Dataset)
+What is Data Preprocessing?
+
+Theory:
+Data preprocessing is the process of cleaning and preparing raw data before using it in a machine learning model. It improves data quality and model performance.
+
+Step 1: Import Library
+import pandas as pd
+
+Explanation:
+
+pandas is a Python library used to read and manage datasets.
+Step 2: Load Dataset
+df = pd.read_csv("Titanic-Dataset.csv")
+
+Explanation:
+
+Reads the CSV file and stores it in a DataFrame (df).
+Step 3: Display Dataset
+print(df)
+
+Explanation:
+
+Displays all rows and columns of the dataset.
+Step 4: Check Missing Values
+print(df.isnull().sum())
+
+Theory:
+Missing values are empty cells in the dataset that should be handled before training a model.
+
+Explanation:
+
+isnull() checks for missing values.
+sum() counts missing values in each column.
+Step 5: Handle Missing Values
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+df["Cabin"] = df["Cabin"].fillna("Unknown")
+df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+
+Explanation:
+
+Age: Replace missing values with the mean.
+Cabin: Replace missing values with "Unknown".
+Embarked: Replace missing values with the most frequent value (mode).
+Step 6: Label Encoding
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+
+df["Sex"] = le.fit_transform(df["Sex"])
+df["Embarked"] = le.fit_transform(df["Embarked"])
+
+Theory:
+Machine learning models cannot work directly with text data, so categorical values are converted into numbers.
+
+Example:
+
+Male → 1
+Female → 0
+Step 7: Convert Data Types
+df["Age"] = df["Age"].astype(int)
+df["Fare"] = df["Fare"].astype(int)
+
+Explanation:
+
+Converts Age and Fare from float to int.
+Step 8: Feature Scaling
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler(feature_range=(-1, 1))
+
+df[["Age","Fare","PassengerId","Pclass","Sex","Embarked"]] = scaler.fit_transform(
+    df[["Age","Fare","PassengerId","Pclass","Sex","Embarked"]]
+)
+
+Theory:
+Feature scaling converts numerical values into the same range, helping many machine learning algorithms perform better.
+
+Explanation:
+
+Scales selected features to the range -1 to +1.
+Step 9: Select Features (X)
+X = df[["Age","Fare","PassengerId","Pclass","Sex","Embarked"]]
+
+Theory:
+Features (X) are the input variables used to make predictions.
+
+Step 10: Select Target (y)
+y = df["Survived"]
+
+Theory:
+The target (y) is the output variable the model predicts.
+
+0 = Did not survive
+1 = Survived
+Step 11: Train-Test Split
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+Theory:
+The dataset is divided into:
+
+Training Data (80%): Used to train the model.
+Testing Data (20%): Used to evaluate the model.
+
+Explanation:
+
+test_size=0.2 → 20% testing data.
+random_state=42 → Produces the same split every time.
+Step 12: Print the Results
+print(X_train)
+print(X_test)
+print(y_train)
+print(y_test)
+
+Explanation:
+
+Displays the training and testing datasets.
