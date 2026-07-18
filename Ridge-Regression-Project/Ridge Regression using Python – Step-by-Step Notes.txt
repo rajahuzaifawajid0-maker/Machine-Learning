@@ -1,0 +1,432 @@
+
+# **Ridge Regression (L2 Regularization)**
+
+## **Step-by-Step Notes**
+
+### **Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 1: Import Libraries**
+
+### **Code**
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+```
+
+### **Explanation**
+
+Libraries are pre-written Python packages that make programming easier. They provide ready-made functions for data handling, machine learning, and evaluation.
+
+### **Why We Use These Libraries**
+
+| Library          | Purpose                                       |
+| ---------------- | --------------------------------------------- |
+| Pandas           | Read and manage dataset                       |
+| NumPy            | Perform mathematical calculations             |
+| train_test_split | Divide dataset into training and testing data |
+| Ridge            | Create Ridge Regression model                 |
+| Metrics          | Measure model performance                     |
+
+### **Output**
+
+No output. Libraries are successfully imported.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 2: Read Dataset**
+
+### **Code**
+
+```python
+df = pd.read_csv("Employers_data.csv")
+```
+
+### **Explanation**
+
+This command loads the CSV file into a DataFrame named **df**.
+
+A DataFrame is a table consisting of rows and columns.
+
+### **Output**
+
+Dataset is loaded into Python memory.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 3: Display Dataset**
+
+### **Code**
+
+```python
+print(df.head())
+print(df.tail())
+print(df.describe())
+```
+
+### **Explanation**
+
+### **head()**
+
+Displays the first 5 rows of the dataset.
+
+### **tail()**
+
+Displays the last 5 rows.
+
+### **describe()**
+
+Shows statistical information such as:
+
+* Count
+* Mean
+* Standard Deviation
+* Minimum
+* Maximum
+
+### **Purpose**
+
+To understand the dataset before training the model.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 4: Select Features (Independent Variable)**
+
+### **Code**
+
+```python
+X = df[['Experience_Years']]
+```
+
+### **Explanation**
+
+The feature (X) is the input used to predict salary.
+
+Here, **Experience_Years** is selected as the independent variable.
+
+### **Why?**
+
+Experience affects employee salary.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 5: Select Target (Dependent Variable)**
+
+### **Code**
+
+```python
+y = df['Salary']
+```
+
+### **Explanation**
+
+The target variable (y) is the output that the model predicts.
+
+Here, Salary is the dependent variable.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 6: Split Dataset**
+
+### **Code**
+
+```python
+train_test_split(
+X,
+y,
+test_size=0.2,
+random_state=42
+)
+```
+
+### **Explanation**
+
+The dataset is divided into:
+
+* **80% Training Data**
+* **20% Testing Data**
+
+### **Why?**
+
+Training data teaches the model.
+
+Testing data checks model performance.
+
+### **random_state=42**
+
+Keeps the split the same every time the code runs.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 7: Create Ridge Regression Model**
+
+### **Code**
+
+```python
+model = Ridge(alpha=1.0)
+```
+
+### **Explanation**
+
+Ridge Regression is an improved version of Linear Regression.
+
+It uses **L2 Regularization** to reduce overfitting.
+
+### **alpha**
+
+Controls regularization strength.
+
+Higher alpha = More regularization.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 8: Train Model**
+
+### **Code**
+
+```python
+model.fit(X_train,y_train)
+```
+
+### **Explanation**
+
+The model learns the relationship between:
+
+* Experience
+* Salary
+
+This process is called **Training**.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 9: Prediction**
+
+### **Code**
+
+```python
+y_pred=model.predict(X_test)
+```
+
+### **Explanation**
+
+The trained model predicts salary for the testing data.
+
+The predicted values are stored in **y_pred**.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 10: Model Evaluation**
+
+### **Code**
+
+```python
+mse
+rmse
+mae
+r2
+```
+
+### **Explanation**
+
+### **MSE**
+
+Mean Squared Error
+
+Measures squared prediction error.
+
+Lower value = Better model.
+
+---
+
+### **RMSE**
+
+Root Mean Squared Error
+
+Shows average prediction error.
+
+Lower RMSE = Better prediction.
+
+---
+
+### **MAE**
+
+Mean Absolute Error
+
+Average absolute difference between actual and predicted salary.
+
+Lower MAE = Better model.
+
+---
+
+### **R² Score**
+
+Shows model accuracy.
+
+Range:
+
+* 0 = Poor
+* 1 = Perfect
+
+Higher R² = Better performance.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 11: Scatter Plot**
+
+### **Purpose**
+
+Shows relationship between:
+
+* Experience
+* Salary
+
+Each dot represents one employee.
+
+### **Observation**
+
+More experience generally leads to higher salary.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 12: Salary Growth Line Chart**
+
+### **Purpose**
+
+Shows salary trend as experience increases.
+
+### **Observation**
+
+Salary generally increases with experience.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 13: Salary Distribution Histogram**
+
+### **Purpose**
+
+Shows how salaries are distributed.
+
+### **Observation**
+
+Identifies common salary ranges.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 14: Experience Distribution Histogram**
+
+### **Purpose**
+
+Shows how employee experience is distributed.
+
+### **Observation**
+
+Helps identify whether most employees are beginners or experienced.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 15: Ridge Regression Graph**
+
+### **Purpose**
+
+Compares:
+
+* Actual Data
+* Ridge Regression Line
+
+### **Observation**
+
+The regression line shows the trend of salary prediction.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 16: Actual vs Predicted Graph**
+
+### **Purpose**
+
+Compares:
+
+* Actual Salary
+* Predicted Salary
+
+### **Observation**
+
+Points closer to the diagonal line indicate more accurate predictions.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 17: Education Level Pie Chart**
+
+### **Purpose**
+
+Shows the percentage of employees by education level.
+
+### **Observation**
+
+Each slice represents a different education category.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Step 18: Gender Distribution Pie Chart**
+
+### **Purpose**
+
+Displays the percentage of male and female employees.
+
+### **Observation**
+
+Helps understand gender representation in the dataset.
+
+**Presented by Raja Huzaifa Wajid**
+
+---
+
+# **Final Conclusion**
+
+* Dataset loaded successfully.
+* Experience was used to predict Salary.
+* Ridge Regression model was trained.
+* Model performance was evaluated using MSE, RMSE, MAE, and R² Score.
+* Different graphs were used to visualize the relationship between Experience and Salary.
+* Pie charts were used to analyze Education Level and Gender distribution.
+* Ridge Regression reduces overfitting and improves prediction accuracy compared to simple Linear Regression.
+
+**Presented by Raja Huzaifa Wajid**
