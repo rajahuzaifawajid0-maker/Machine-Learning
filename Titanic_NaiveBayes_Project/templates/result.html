@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-5 text-center">
+
+        <h1 class="mb-4">
+            🚢 Titanic Survival Prediction
+        </h1>
+         {% if prediction == "Passenger Survived" %}
+
+<h2 class="text-success">
+    ✅ Passenger Survived
+</h2>
+
+{% else %}
+
+<h2 class="text-danger">
+    ❌ Passenger Did Not Survive
+</h2>
+
+{% endif %}
+
+        <br>
+
+        <a href="/" class="btn btn-primary">
+            Predict Another Passenger
+        </a>
+
+    </div>
+
+</div>
+        
+</body>
+</html>
+<hr>
+
+<h4 class="text-primary">
+    Model Confidence :
+    {{ confidence }}%
+</h4>

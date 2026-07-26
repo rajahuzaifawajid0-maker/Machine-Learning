@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titanic Survival Prediction</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+
+        <h1 class="text-center mb-4">
+            🚢 Titanic Survival Prediction
+        </h1>
+
+        <form action="/predict" method="POST">
+
+            <div class="mb-3">
+                <label>Pclass</label>
+                <input type="number" class="form-control" name="Pclass" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Sex</label>
+
+                <select class="form-control" name="Sex">
+
+                    <option value="1">Male</option>
+
+                    <option value="0">Female</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label>Age</label>
+
+                <input type="number" step="0.1"
+                       class="form-control"
+                       name="Age" required>
+
+            </div>
+
+            <div class="mb-3">
+                <label>SibSp</label>
+
+                <input type="number"
+                       class="form-control"
+                       name="SibSp" required>
+
+            </div>
+
+            <div class="mb-3">
+                <label>Parch</label>
+
+                <input type="number"
+                       class="form-control"
+                       name="Parch" required>
+
+            </div>
+
+            <div class="mb-3">
+                <label>Fare</label>
+
+                <input type="number"
+                       step="0.01"
+                       class="form-control"
+                       name="Fare" required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label>Embarked</label>
+
+                <select class="form-control" name="Embarked">
+
+                    <option value="0">C</option>
+
+                    <option value="1">Q</option>
+
+                    <option value="2">S</option>
+
+                </select>
+
+            </div>
+
+            <button class="btn btn-primary w-100">
+
+                Predict
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
