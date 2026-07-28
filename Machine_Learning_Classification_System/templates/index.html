@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Machine Learning Classification System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="main-card">
+
+        <h1 class="text-center mb-2">
+            🤖 Machine Learning Classification System
+        </h1>
+
+        <p class="text-center text-muted mb-4">
+            Upload Dataset • Preprocess • Train • Evaluate
+        </p>
+
+        <!-- Upload -->
+
+        <div class="section">
+
+            <h3>📂 Upload CSV Dataset</h3>
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    name="file"
+                    class="form-control"
+                    required>
+
+                <button class="btn btn-primary w-100 mt-3">
+                    Upload Dataset
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Preprocessing -->
+
+        <div class="section">
+
+            <h3>⚙ Dynamic Preprocessing</h3>
+
+            <a href="/preprocess">
+
+                <button class="btn btn-success w-100">
+                    Start Preprocessing
+                </button>
+
+            </a>
+
+        </div>
+
+        <!-- Training -->
+
+        <div class="section">
+
+            <h3>🧠 Select Classification Model</h3>
+
+            <form action="/train" method="POST">
+
+                <select name="model" class="form-select">
+
+                    <option>Logistic Regression</option>
+                    <option>KNN</option>
+                    <option>Decision Tree</option>
+                    <option>Random Forest</option>
+                    <option>SVM</option>
+                    <option>Naive Bayes</option>
+                    <option>Gradient Boosting</option>
+                    <option>AdaBoost</option>
+                    <option>Extra Trees</option>
+                    <option>XGBoost</option>
+
+                </select>
+
+                <button class="btn btn-danger w-100 mt-3">
+                    🚀 Train Model
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
